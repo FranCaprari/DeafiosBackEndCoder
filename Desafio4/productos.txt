@@ -1,8 +1,14 @@
 [
- {
-  "tittle": "Escuadra",
-  "price": 5000,
-  "thumbnail": "escuadra.imagen",
-  "id": 1
- },
+  {
+    "tittle": "eeeeea",
+    "price": "12321",
+    "thumbnail": "asdfasd",
+    "id": 2
+  },
+  {
+    "tittle": "Tornillo",
+    "price": "12321",
+    "thumbnail": "asdfasd",
+    "id": 1
+  }
 ]

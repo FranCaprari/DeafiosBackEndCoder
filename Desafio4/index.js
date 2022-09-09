@@ -29,22 +29,25 @@ async save(obj){
     }
 }
 
-async getById(id){
-    const database = await fs.readFileSync(this.file, "utf-8");
-    const productos = JSON.parse(database);
-    const buscarid = productos.find((producto) => producto.id === id);
-    try{
-        if(buscarid){
-            console.log(buscarid);
-        }
-        else{
-            console.log("No se encontro el producto buscado.")
-            return null;
-        }
-    }
-    catch(error){
-        console.log("Se produjo un error al buscar el producto.");
-    }
+ async getById(id){
+     const database = await fs.readFileSync(this.file, "utf-8");
+     const productos = JSON.parse(database);
+     const buscarid = productos.find((producto) => producto.id === id);
+     try{
+         if(buscarid){
+             console.log(buscarid);
+             return buscarid;
+         }
+         else{
+             console.log("No se encontro el producto buscado.")
+             return null;
+         }
+     }
+     catch(error){
+         console.log("Se produjo un error al buscar el producto.");
+     }
+    
+    
 }
 async getAll(){
     const database = await fs.readFileSync(this.file, "utf-8");
@@ -73,6 +76,7 @@ async deleteById(id){
             console.log(`Se elimino el prodcuto ${buscarId.tittle}`);
             const productosactualizados = JSON.stringify(productosrestantes, null, " ");
             fs.writeFileSync(this.file, productosactualizados);
+            return (buscarId);
         }
         else{
             console.log("No se encontro el producto con ese id.");
@@ -91,15 +95,17 @@ async deleteAll(){
         console.log(`Se produjo un error al intentar eliminar todos los productos, ${error}`);
     }
 }
- updateById(idIngresada, newObj){
+ async updateById(idIngresada, newObj){
+    const database = await fs.readFileSync(this.file, "utf-8");
+    let productos = JSON.parse(database);
     try{
-        const otrosObj = this.file.filter(({ id }) => id !== idIngresada);
-        const idBuscado = this.file.find(({ id }) => id == idIngresada);
+        const otrosObj = productos.filter(({ id }) => id !== idIngresada);
+        const idBuscado = productos.find(({ id }) => id == idIngresada);
 
         if(idBuscado){
             const idBuscado = { ...newObj, id: idIngresada};
             otrosObj.push(idBuscado);
-            this.file = otrosObj;
+            fs.writeFileSync(this.file, JSON.stringify(otrosObj, null, 2));
             return idBuscado; 
         }else{
             return null;

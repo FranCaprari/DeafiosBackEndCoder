@@ -1,0 +1,20 @@
+[
+ {
+  "title": "Lapiz",
+  "precio": "30",
+  "thumbnail": "https://i.postimg.cc/TwBVss25/pencil-png.webp",
+  "id": 1
+ },
+ {
+  "title": "Escuadra",
+  "precio": "50",
+  "thumbnail": "https://i.postimg.cc/bJZ03PPj/1f4d0.png",
+  "id": 2
+ },
+ {
+  "title": "Regla",
+  "precio": "40",
+  "thumbnail": "https://i.postimg.cc/0NWdYQLf/descarga.png",
+  "id": 3
+ }
+]

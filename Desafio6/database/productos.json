@@ -16,5 +16,11 @@
   "precio": "40",
   "thumbnail": "https://i.postimg.cc/0NWdYQLf/descarga.png",
   "id": 3
+ },
+ {
+  "title": "Sandia",
+  "precio": "35",
+  "thumbnail": "https://i.postimg.cc/W3j6Qyct/sandia.png",
+  "id": 4
  }
 ]

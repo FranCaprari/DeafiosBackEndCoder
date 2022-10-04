@@ -1,0 +1,32 @@
+[
+ {
+  "tittle": "Luces led",
+  "price": 250,
+  "thumbnail": "lucesledimage",
+  "description": "luces led rgb",
+  "code": "AAA1",
+  "stock": 10,
+  "id": 1,
+  "timestamp": "3/10/2022 14:05:18"
+ },
+ {
+  "tittle": "Luces led2",
+  "price": 250,
+  "thumbnail": "lucesledimage2",
+  "description": "luces led rgb",
+  "code": "AAA1",
+  "stock": 10,
+  "id": 2,
+  "timestamp": "4/10/2022 18:44:13"
+ },
+ {
+  "tittle": "Luces led3",
+  "price": 250,
+  "thumbnail": "lucesledimage3",
+  "description": "luces led rgb",
+  "code": "AAA1",
+  "stock": 10,
+  "id": 3,
+  "timestamp": "4/10/2022 18:44:13"
+ }
+]

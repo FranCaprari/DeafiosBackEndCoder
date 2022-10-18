@@ -1,5 +1,5 @@
-const express = require("express");
-const handlebars = require("express-handlebars");
+import express from 'express';
+import handlebars from 'express-handlebars';
 const app = express();
 
 import DBfunctions from './connectionDatabase/funciones.js';
@@ -58,7 +58,7 @@ app.get("/", async(req, res) =>{
         addProd: "Añadir producto",
         compras: await DBproductos.getAll(),
         noProd: "No hay productos",
-        partialsPath: "./views/layouts",
+        partialsPath: "./views/partials",
     });
 });
 

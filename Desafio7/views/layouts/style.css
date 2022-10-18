@@ -1,0 +1,20 @@
+body {
+    background-color: #f4f7f6;
+    margin-top: 0px;
+    margin-bottom: 5rem;
+  }
+.btnProducto{
+  background-color: black;
+}
+.btnMensaje{
+  background-color: black;
+}
+.mensajeinput{
+  border: solid;
+}
+.chat-message{
+  padding-top:2rem;
+}
+ .card-body{
+  border:solid;
+ }

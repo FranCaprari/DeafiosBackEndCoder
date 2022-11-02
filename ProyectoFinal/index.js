@@ -3,7 +3,9 @@ const app = express();
 const fs = require("fs");
 const productosRouter = require("./routes/productroutes");
 const cartRouter = require("./routes/cartroutes");
+import daos from './daos/indexdaos.js';
 
+const {daoCart, daoProd} = await daos();
 
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());

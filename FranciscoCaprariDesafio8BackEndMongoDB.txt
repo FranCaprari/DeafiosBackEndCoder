@@ -1,0 +1,152 @@
+Desafio numero8: MONGO DB
+Alumno: Francisco Caprari
+
+Crear base de datos ecommerce y agregar colleciones productos y mensajes:
+ 
+db.productos.find()
+{ _id: ObjectId("6358651334cd6e6c181c6a6c"),
+  nombre: 'luces led',
+  precio: '200',
+  description: 'luces led rojas',
+  thumbnail: 'ledsimage' }
+{ _id: ObjectId("6358652f34cd6e6c181c6a6d"),
+  nombre: 'lapicera',
+  precio: '300',
+  description: 'lapicera azul',
+  thumbnail: 'lapiceraimage' }
+{ _id: ObjectId("6358654e34cd6e6c181c6a6e"),
+  nombre: 'regla',
+  precio: '4000',
+  description: 'regla recta',
+  thumbnail: 'reglaimage' }
+{ _id: ObjectId("6358656434cd6e6c181c6a6f"),
+  nombre: 'escuadra',
+  precio: '2000',
+  description: 'escuadra 90 grados',
+  thumbnail: 'escuadraimage' }
+{ _id: ObjectId("6358658234cd6e6c181c6a70"),
+  nombre: 'cartuchera',
+  precio: '4500',
+  description: 'cartuchera simple',
+  thumbnail: 'cartucheraimage' }
+
+
+db.mensajes.find()
+{ _id: ObjectId("635865da34cd6e6c181c6a71"),
+  email: 'juan@gmail.com',
+  mensaje: 'hola a todos' }
+{ _id: ObjectId("635865e334cd6e6c181c6a72"),
+  email: 'pedro@gmail.com',
+  mensaje: 'hola como estan' }
+{ _id: ObjectId("635865ec34cd6e6c181c6a73"),
+  email: 'fran@gmail.com',
+  mensaje: 'bien y ustedes' }
+{ _id: ObjectId("635865f634cd6e6c181c6a74"),
+  email: 'sofia@gmail.com',
+  mensaje: 'buenas tardes' }
+{ _id: ObjectId("6358660134cd6e6c181c6a75"),
+  email: 'maria@gmail.com',
+  mensaje: 'holaaaaa' }
+
+Mostrar cantidad de cada collection: 
+db.productos.countDocuments()
+5
+
+db.mensajes.countDocuments()
+5
+
+5) a) Agregar un producto mas a la coleccion productos: 
+db.productos.insertOne([{nombre: "cuaderno", precio: "5000", descripcion: "cuaderno cuadriculado", thumbnail: "cuadernoimage"}])
+{ acknowledged: true,
+  insertedId: ObjectId("6358675034cd6e6c181c6a76") }
+
+1) Listar productos con precio menor a 1000 pesos:
+db.productos.find({precio: {$lt: 1000}})
+{ _id: ObjectId("6358651334cd6e6c181c6a6c"),
+  nombre: 'luces led',
+  precio: 200,
+  description: 'luces led rojas',
+  thumbnail: 'ledsimage' }
+{ _id: ObjectId("6358652f34cd6e6c181c6a6d"),
+  nombre: 'lapicera',
+  precio: 300,
+  description: 'lapicera azul',
+  thumbnail: 'lapiceraimage' }
+
+
+2)listar productos co nrpecio entre 1000 y 3000 pesos:
+db.productos.find({$and: [{precio: {$gt:1000}}, {precio: {$lt: 3000}}]})
+{ _id: ObjectId("6358656434cd6e6c181c6a6f"),
+  nombre: 'escuadra',
+  precio: 2000,
+  description: 'escuadra 90 grados',
+  thumbnail: 'escuadraimage' }
+
+3) listar productos con precio mayor a 3000 pesos:
+db.productos.find({precio: {$gt: 3000}})
+{ _id: ObjectId("6358654e34cd6e6c181c6a6e"),
+  nombre: 'regla',
+  precio: 4000,
+  description: 'regla recta',
+  thumbnail: 'reglaimage' }
+{ _id: ObjectId("6358658234cd6e6c181c6a70"),
+  nombre: 'cartuchera',
+  precio: 4500,
+  description: 'cartuchera simple',
+  thumbnail: 'cartucheraimage' }
+
+4) Realizar una consulta que traiga solo el nombre del tercer producto mas barato:
+db.productos.find().skip(3).limit(1).sort({precio: 1})
+{ _id: ObjectId("6358656434cd6e6c181c6a6f"),
+  nombre: 'escuadra',
+  precio: 2000,
+  description: 'escuadra 90 grados',
+  thumbnail: 'escuadraimage' }
+
+
+c) Poner campo stock a todos los productos:
+db.productos.updateMany({}, {$set: {stock: 100}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 6,
+  modifiedCount: 6,
+  upsertedCount: 0 }
+
+d)Cambiar el valor de stock a cero de los productos con precio mayor a 4000 pesos
+db.productos.updateMany({precio: {$gt: 4000}}, {$set: {stock: 0}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0 }
+
+e) Borrar productos con precio menor a 1000 pesos:
+
+db.productos.deleteMany({precio: {$lt: 1000}})
+{ acknowledged: true, deletedCount: 2 }
+
+
+6) Crear usuario pepe clave asd456 que solo pueda leer base de datos ecommerce:
+show databases
+admin            40.00 KiB
+config          108.00 KiB
+ecommerce       112.00 KiB
+local            72.00 KiB
+pruebadatabase    8.00 KiB
+use admin
+'switched to db admin'
+db.createUser({user: "pepe", pwd: "asd456", roles: [{role: 'read', db: 'ecommerce'}]})
+{ ok: 1 }
+
+
+
+show users;
+[ { _id: 'admin.pepe',
+    userId: UUID("4d46b40d-b129-493e-b691-af5f819b12ce"),
+    user: 'pepe',
+    db: 'admin',
+    roles: [ { role: 'read', db: 'ecommerce' } ],
+    mechanisms: [ 'SCRAM-SHA-1', 'SCRAM-SHA-256' ] } ]
+
+
+

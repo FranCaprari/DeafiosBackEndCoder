@@ -8,7 +8,7 @@ const app = express();
 app.use(
 	session({
 		store: MongoStore.create({
-			mongoUrl: 'mongodb+srv://cvarela:never123@cluster0.hz9hxot.mongodb.net/sessions',
+			mongoUrl: 'mongodb+srv://francaprari:never123@cluster0.hz9hxot.mongodb.net/sessions',
 			mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
 		}),
 

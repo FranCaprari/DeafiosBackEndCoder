@@ -29,6 +29,7 @@
     "firebase-admin": "^11.2.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^2.3.0",
+    "minimist": "^1.2.7",
     "mongoose": "^6.7.0",
     "mysql": "^2.18.1",
     "normalizr": "^3.6.2",
